@@ -5,6 +5,7 @@ import entity.Product;
 import managers.CustomerManager;
 import managers.ProductManager;
 import managers.PurchaseManager;
+import managers.SaveManager;
 import tools.KeyboardInput;
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +13,7 @@ import java.util.Scanner;
 public class App {
 
     private final Scanner scanner;
+    private final SaveManager saveManager;
     private List<Customer> customers;
     private List<Product> products;
     private final ProductManager productManager;
@@ -20,11 +22,12 @@ public class App {
 
     public App() {
         this.scanner = new Scanner(System.in);
+        this.saveManager = new SaveManager();
         this.productManager = new ProductManager(scanner);
         this.customerManager = new CustomerManager(scanner);
         this.purchaseManager = new PurchaseManager(scanner, customerManager, productManager);
-        this.customers = customerManager.getListCustomers();
-        this.products = productManager.getListProducts();
+        this.customers = saveManager.loadCustomers();
+        this.products = saveManager.loadProducts();
     }
 
     void run() throws Exception {
@@ -53,12 +56,14 @@ public class App {
                     break;
                 case 1:
                     products.add(productManager.addProduct());
+                    saveManager.saveProducts(products);
                     break;
                 case 2:
                     productManager.printListProducts(products);
                     break;
                 case 3:
                     customers.add(customerManager.addCustomer());
+                    saveManager.saveCustomers(customers);
                     break;
                 case 4:
                     customerManager.printListCustomers(customers);
