@@ -12,11 +12,13 @@ import java.util.Scanner;
 public class ProductManager {
 
     private final Scanner scanner;
+    private DatabaseManager databaseManager;
     private List<Product> products;
 
     public ProductManager(Scanner scanner) {
         this.scanner = scanner;
-        this.products = new ArrayList<>();
+        this.databaseManager = new DatabaseManager();
+        this.products = databaseManager.getListProductsFromBase();
     }
 
     public Product addProduct() {
@@ -64,6 +66,10 @@ public class ProductManager {
         products.get(setProduct - 1).setProductName(updatedProductName);
         products.get(setProduct - 1).setPrice(updatedPrice);
         System.out.println("The updated product " + products.get(setProduct - 1).toString());
+        databaseManager.saveProductToBase(
+                products.get(setProduct - 1).getProductName(),
+                products.get(setProduct - 1).getPrice()
+        );
     }
 
     public void productsSalesRating() {

@@ -2,9 +2,7 @@ package main;
 
 import entity.Customer;
 import entity.Product;
-import managers.CustomerManager;
-import managers.ProductManager;
-import managers.PurchaseManager;
+import managers.*;
 import tools.KeyboardInput;
 import java.util.List;
 import java.util.Scanner;
@@ -14,12 +12,14 @@ public class App {
     private final Scanner scanner;
     private List<Customer> customers;
     private List<Product> products;
+    private final SavingManager savingManager;
     private final ProductManager productManager;
     private final CustomerManager customerManager;
     private final PurchaseManager purchaseManager;
 
     public App() {
         this.scanner = new Scanner(System.in);
+        this.savingManager = new SavingManager();
         this.productManager = new ProductManager(scanner);
         this.customerManager = new CustomerManager(scanner);
         this.purchaseManager = new PurchaseManager(scanner, customerManager, productManager);
@@ -53,12 +53,14 @@ public class App {
                     break;
                 case 1:
                     products.add(productManager.addProduct());
+                    savingManager.saveProduct(products);
                     break;
                 case 2:
                     productManager.printListProducts(products);
                     break;
                 case 3:
                     customers.add(customerManager.addCustomer());
+                    savingManager.saveCustomer(customers);
                     break;
                 case 4:
                     customerManager.printListCustomers(customers);

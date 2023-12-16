@@ -10,11 +10,13 @@ import java.util.Scanner;
 public class CustomerManager {
 
     private final Scanner scanner;
+    private DatabaseManager databaseManager;
     private List<Customer> customers;
 
     public CustomerManager(Scanner scanner) {
         this.scanner = scanner;
-        this.customers = new ArrayList<>();
+        this.databaseManager = new DatabaseManager();
+        this.customers = databaseManager.getListCustomersFromBase();
     }
 
     public Customer addCustomer() {
@@ -65,6 +67,11 @@ public class CustomerManager {
         int newBalance = currentBalanceOfCustomer + setAmount;
         customers.get(setCustomer - 1).setBalance(newBalance);
         System.out.println("The new balance of customer is " + customers.get(setCustomer - 1).getBalance());
+        databaseManager.saveCustomerToBase(
+                customers.get(setCustomer - 1).getFirstName(),
+                customers.get(setCustomer - 1).getLastName(),
+                customers.get(setCustomer - 1).getBalance()
+                );
     }
 
     public void editCustomer() {
@@ -82,5 +89,10 @@ public class CustomerManager {
         customers.get(setCustomer - 1).setFirstName(updatedFirstName);
         customers.get(setCustomer - 1).setLastName(updatedLastname);
         System.out.println("The updated product " + customers.get(setCustomer - 1).toString());
+        databaseManager.saveCustomerToBase(
+                customers.get(setCustomer - 1).getFirstName(),
+                customers.get(setCustomer - 1).getLastName(),
+                customers.get(setCustomer - 1).getBalance()
+        );
     }
 }
