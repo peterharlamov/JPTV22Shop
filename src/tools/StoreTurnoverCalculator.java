@@ -32,10 +32,10 @@ public class StoreTurnoverCalculator {
         do{
             System.out.println("Select task: ");
             System.out.println("0. Exit");
-            System.out.println("1.Amount price for year");
-            System.out.println("2.Amount price for month");
-            System.out.println("3.Amount price for day"); 
-            System.out.println("4.Amound price for all the time");
+            System.out.println("1. Amount price for year");
+            System.out.println("2. Amount price for month");
+            System.out.println("3. Amount price for day"); 
+            System.out.println("4. Amound price for all the time");
             System.out.print("Set task: ");
             System.out.println("\n");
             int task = KeyboardInput.inputNumber(0, 4);

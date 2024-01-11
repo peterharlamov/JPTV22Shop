@@ -12,7 +12,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 public abstract class SaleFacade extends AbstractFacade<Sale> {
      private EntityManager em;

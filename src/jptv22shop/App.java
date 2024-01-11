@@ -17,7 +17,7 @@ import tools.StoreTurnoverCalculator;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 class App {
     private final Scanner scanner;
@@ -39,28 +39,28 @@ class App {
     void run() {
          boolean repeat = true;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("---------Photography world------------\n");
-        System.out.println("Hello it`s shop where sold photo camera\n");
-        System.out.println("---------------------------------------\n");
+        System.out.println("----------------------");
+        System.out.println("Harlamov Sneaker Shop");
+        System.out.println("----------------------");
         do {
             System.out.println("Select task: ");
             System.out.println("0. Exit");
-            System.out.println("1.Add new product");
-            System.out.println("2.Add new customer");
-            System.out.println("3.Print list products");            
-            System.out.println("4.Print list customers");
-            System.out.println("5.Sold a product to customer");            
-            System.out.println("6.Print list sold out products");
-            System.out.println("7.Add money customer");
-            System.out.println("8.All price all sold products for all the time");
-            System.out.println("9.Rating most popular customer");
-            System.out.println("10.Rating most popular products");
-            System.out.println("11.Add quantity to products");
-            System.out.println("12.edit customer");
-            System.out.println("13.edit product");
-            System.out.println("14.When next company?");
-            System.out.println("15.add sale company");
-            System.out.println("16.edit sale company");
+            System.out.println("1. Add new product");
+            System.out.println("2. Add new customer");
+            System.out.println("3. Print list products");            
+            System.out.println("4. Print list customers");
+            System.out.println("5. Sold a product to customer");            
+            System.out.println("6. Print list sold out products");
+            System.out.println("7. Add money customer");
+            System.out.println("8. All price all sold products for all the time");
+            System.out.println("9. Rating most popular customer");
+            System.out.println("10. Rating most popular products");
+            System.out.println("11. Add quantity to products");
+            System.out.println("12. Edit customer");
+            System.out.println("13. Edit product");
+            System.out.println("14. When next company?");
+            System.out.println("15. Add sale company");
+            System.out.println("16. Edit sale company");
             System.out.print("Set task: ");
             int task = KeyboardInput.inputNumber(0, 16);             
             switch (task) {
@@ -117,7 +117,7 @@ class App {
                     saleManager.editCompany();
                     break;
                 default:
-                    System.out.println("Choice number from list !");
+                    System.out.println("Please choice number from list!");
             }
         } while (repeat);
     }

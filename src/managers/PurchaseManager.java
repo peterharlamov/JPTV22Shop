@@ -11,22 +11,16 @@ import entity.Purchase;
 import facades.CustomerFacade;
 import facades.ProductFacade;
 import facades.PurchaseFacade;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import java.util.Scanner;
-import java.util.stream.Collectors;
 import tools.KeyboardInput;
 import tools.PurchaseManagerUtils;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 public class PurchaseManager {
   private final Scanner scanner;  
@@ -49,16 +43,7 @@ public class PurchaseManager {
         this.utils = new PurchaseManagerUtils();
     }
   public void sellProduct(){
-      /*
-            1.Вывести список покупателей
-            2.Выбрать покупателя
-            3.Вывести список товаров
-            4.Покупатель вводит номер товара
-            5.Покупатель вводит количество количество товара 
-            5.Проверка на количества денег у покупателя
-            6.Добавить в purchase дату покупки товара
-            7.Вычисления денег у покупателя после покупки
-       */
+      
        Purchase purchase = new Purchase();
         List<Customer> customers = customerManager.customers();
         List<Product> products = productManager.products();
@@ -76,20 +61,20 @@ public class PurchaseManager {
         if (selectedProduct.getQuantity() > 0 && selectedProduct.getPrice() <= purchase.getCustomer().getMoney()) {
             System.out.print("Input quantity of the product: ");
             int quantity = (KeyboardInput.inputNumber(1, selectedProduct.getQuantity()));
-            
+
             purchase.setProduct(selectedProduct);
             purchase.setQuantity(quantity);
             purchase.setDate(new GregorianCalendar().getTime());
             double totalPrice = selectedProduct.getPrice() * quantity;
             purchase.getCustomer().setMoney((int) (purchase.getCustomer().getMoney() - totalPrice));
 
-            
+
             selectedProduct.setQuantity(selectedProduct.getQuantity() - quantity);
             purchaseFacade.create(purchase);
-            
+
             // Обновление баланса покупателя в базе данных
             customerFacade.edit(purchase.getCustomer());
-            
+
             // Обновление информации о продукте в базе данных
             productFacade.edit(selectedProduct);
             System.out.println("Purchase saved successfully!");
@@ -105,9 +90,9 @@ public class PurchaseManager {
          do {
             System.out.println("Select task: ");
             System.out.println("0. Exit");
-            System.out.println("1.Rating for the year");
-            System.out.println("2.Rating for the month");
-            System.out.println("3.Rating for the day");                          
+            System.out.println("1. Rating for the year");
+            System.out.println("2. Rating for the month");
+            System.out.println("3. Rating for the day");                          
             System.out.print("Set task: ");
             System.out.println("\n");
             int task = KeyboardInput.inputNumber(0, 3);             
@@ -117,28 +102,28 @@ public class PurchaseManager {
                     repeat = false;
                     break;
                 case 1:
-                      System.out.print("Введите год: ");
+                      System.out.print("Enter year: ");
                       int numYears = (KeyboardInput.inputNumber(1, 2050));
                       
                       utils.calculateCustomerRatingForYear(numYears); // Рейтинг за год                                          
                       break;
                 case 2:     
-                      System.out.print("Введите год: ");
+                      System.out.print("Enter year: ");
                       int numYear = (KeyboardInput.inputNumber(1, 2050));
 
-                      System.out.print("Введите месяц: ");
+                      System.out.print("Enter month: ");
                       int numMonth = (KeyboardInput.inputNumber(1, 12));
                       
                       utils.calculateCustomerRatingForMonth(numYear,numMonth); // Рейтинг за месяц                   
                     break;
                 case 3:
-                      System.out.print("Введите год: ");
+                      System.out.print("Enter year: ");
                       int year = (KeyboardInput.inputNumber(1, 2050));
 
-                      System.out.print("Введите месяц: ");
+                      System.out.print("Enter month: ");
                       int month = (KeyboardInput.inputNumber(1, 12));
 
-                      System.out.print("Введите день: ");
+                      System.out.print("Enter day: ");
                       int day = (KeyboardInput.inputNumber(1, 31));
 
                       utils.calculateCustomerRatingForDay(year, month, day); // Рейтинг за день

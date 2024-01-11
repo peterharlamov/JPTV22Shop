@@ -15,7 +15,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 @Entity
 public class Customer implements Serializable {

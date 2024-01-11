@@ -18,7 +18,7 @@ import tools.KeyboardInput;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 public class SaleManager {
      private final Scanner scanner; 
@@ -37,26 +37,24 @@ public class SaleManager {
          LocalDate currentDate = LocalDate.now(); // Получаем текущую дату
         for (int i = 0; i < sale.size(); i++) {
             System.out.println((i + 1) + ". " + sale.get(i).getName());
-            System.out.println("   Start Date: " + sale.get(i).getDateStart());
-            System.out.println("   End Date: " + sale.get(i).getDateEnd());
-            
-            // Преобразуем Date в LocalDate
+            System.out.println("Start Date: " + sale.get(i).getDateStart());
+            System.out.println("End Date: " + sale.get(i).getDateEnd());
+
             LocalDate startDate = sale.get(i).getDateStart().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate endDate = sale.get(i).getDateEnd().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            // Вычисляем разницу между текущей датой и датой начала акции
             long daysUntilSale = ChronoUnit.DAYS.between(currentDate, startDate);
             long monthsUntilSale = ChronoUnit.MONTHS.between(currentDate, startDate);
             long daysUntilSaleEnd = ChronoUnit.DAYS.between(currentDate, endDate);
             
             if (daysUntilSale<=31&&daysUntilSale>0) {
-                System.out.println("   Days until sale: " + daysUntilSale + " days");
+                System.out.println("Days until sale: " + daysUntilSale + " days");
             }
             if(daysUntilSale<0){
-                 System.out.println("   Days until end sale: " + daysUntilSaleEnd + " days");
+                 System.out.println("Days until end sale: " + daysUntilSaleEnd + " days");
             }
             if (daysUntilSale>31) {
-                System.out.println("   Months until sale: " + monthsUntilSale + " months");
+                System.out.println("Months until sale: " + monthsUntilSale + " months");
             }
                 
                         
@@ -79,7 +77,7 @@ public class SaleManager {
         int startMonth = (KeyboardInput.inputNumber(1, 12));
         System.out.print("Введите год начала компании: ");
         int startYear = (KeyboardInput.inputNumber(1, 2080));
-        sale.setDateStart(new Date(startYear - 1900, startMonth - 1, startDay)); // - 1900, потому что в Java год 1900 соответствует 0
+        sale.setDateStart(new Date(startYear - 1900, startMonth - 1, startDay));
 
         System.out.print("Введите день окончания компании: ");
         int endDay = (KeyboardInput.inputNumber(1, 31));
@@ -87,9 +85,8 @@ public class SaleManager {
         int endMonth = (KeyboardInput.inputNumber(1, 12));
         System.out.print("Введите год окончания компании: ");
         int endYear = (KeyboardInput.inputNumber(1, 2080));
-        sale.setDateEnd(new Date(endYear - 1900, endMonth - 1, endDay)); // Аналогично, вычитаем 1900
-
-        saleFacade.create(sale); // Сохраняем объект скидочной компании в базу данных
+        sale.setDateEnd(new Date(endYear - 1900, endMonth - 1, endDay));
+        saleFacade.create(sale);
         System.out.println("Sale company created successfully!");
     }
 

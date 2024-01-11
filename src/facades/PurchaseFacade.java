@@ -18,7 +18,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 public abstract class PurchaseFacade extends AbstractFacade<Purchase> {
      private EntityManager em;

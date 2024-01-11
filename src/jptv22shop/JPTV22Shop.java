@@ -7,7 +7,7 @@ package jptv22shop;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 public class JPTV22Shop {
 

@@ -12,7 +12,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 public abstract class ProductFacade extends AbstractFacade<Product> {
     private final EntityManager em;

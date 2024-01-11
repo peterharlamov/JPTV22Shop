@@ -10,14 +10,12 @@ import facades.CustomerFacade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 import tools.CustomerManagerUtils;
 import tools.KeyboardInput;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 public class CustomerManager {
     private final Scanner scanner;
@@ -64,12 +62,11 @@ public class CustomerManager {
     }
 
     public void addMoneyToCustomer() {
-        // Выводим список покупателей для выбора
         List<Customer> customers = customerFacade.findAll();
         List<Integer> listIdCustomers = printListCustomers();
-        System.out.print("input number customer: ");
+        System.out.print("Input number customer: ");
         int selectedCustomerNumber =(KeyboardInput.inputNumber(1, customers.size()));
-        System.out.print("input amount money for add: ");
+        System.out.print("Input amount money for add: ");
         int amountMoneyForAdd = (KeyboardInput.inputNumber(1, 5000));
         Customer selectedCustomer = customers.get(selectedCustomerNumber - 1);
         int currentMoney = selectedCustomer.getMoney();
@@ -77,16 +74,15 @@ public class CustomerManager {
           customerFacade.edit(selectedCustomer);
     }
    
-    public void editCustomer() {
-         // Выводим список покупателей для выбора    
+    public void editCustomer() {  
         List<Customer> customers = customerFacade.findAll();
         List<Integer> listIdCustomers = printListCustomers();
-        System.out.print("input number customer: ");
+        System.out.print("Input number customer: ");
         int selectedCustomerNumber =(KeyboardInput.inputNumber(1, customers.size()));
         Customer selectedCustomer = customers.get(selectedCustomerNumber - 1);
-        utils.updateCustomerField(selectedCustomer, "input name: ", Customer::getFirstname, Customer::setFirstname);
-        utils.updateCustomerField(selectedCustomer, "input lastname: ", Customer::getLastname, Customer::setLastname);
-        utils.updateCustomerField(selectedCustomer, "input phone number: ", Customer::getPhone, Customer::setPhone);
+        utils.updateCustomerField(selectedCustomer, " input name: ", Customer::getFirstname, Customer::setFirstname);
+        utils.updateCustomerField(selectedCustomer, " input lastname: ", Customer::getLastname, Customer::setLastname);
+        utils.updateCustomerField(selectedCustomer, " input phone number: ", Customer::getPhone, Customer::setPhone);
         utils.updateMoney(selectedCustomer);
         customerFacade.edit(selectedCustomer);
     }

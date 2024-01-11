@@ -14,19 +14,13 @@ import facades.PurchaseFacade;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
 import tools.KeyboardInput;
 import tools.ProductManagerUtils;
 
 /**
  *
- * @author nikit
- *  private String type;
-   private int price;
-   private int quantity;
-   private String brand;
-   private String Model;
+ * @author pupil
+ * 
  */
 public class ProductManager {
     private final Scanner scanner;
@@ -46,7 +40,7 @@ public class ProductManager {
 }
     public void addProduct() {
        Product product = new Product();
-        System.out.print("Please input type photo camera: ");
+        System.out.print("Please input type of sneaker: ");
         product.setType(scanner.nextLine());
         System.out.print("input price: ");
         product.setPrice(KeyboardInput.inputNumber(1, 5000));
@@ -62,7 +56,7 @@ public class ProductManager {
     }
 
     public List<Integer> printListProducts() {
-        System.out.println("-----List products ------");      
+        System.out.println("----- List products ------");      
         List<Product> products = productFacade.findAll();
         List<Integer> arrayProductId = new ArrayList<>();
         for (int i = 0; i < products.size(); i++) {    
@@ -121,7 +115,6 @@ public class ProductManager {
         
     }
 
-    // Проверяем флаг и выводим сообщение об ошибке, если покупок не найдено
     if (!foundPurchase) {
         System.out.println("No purchases for the selected customer.");
     }
@@ -140,9 +133,9 @@ public class ProductManager {
     public void addQuantity() {
         List<Product> products = productFacade.findAll();
         List<Integer> listIdProducts = printListProducts();
-        System.out.print("input number product: ");
+        System.out.print("Input number product: ");
         int selectedProductNumber = (KeyboardInput.inputNumber(1, products.size()));
-        System.out.print("input amount quantity for add: ");
+        System.out.print("Input amount quantity for add: ");
         int quantityToAdd = (KeyboardInput.inputNumber(1, 5000));
 
         Product selectedProduct = products.get(selectedProductNumber - 1);
@@ -156,18 +149,18 @@ public class ProductManager {
     public void editProduct() {
         List<Product> products = productFacade.findAll();
         List<Integer> listIdProducts = printListProducts();
-        System.out.print("input number product: ");
+        System.out.print("Input number product: ");
         int selectedProductNumber = (KeyboardInput.inputNumber(1, products.size()));
         Product selectedProduct = products.get(selectedProductNumber - 1);
-        utils.updateProductField(selectedProduct, "input brand: ", Product::getBrand, Product::setBrand);
-        utils.updateProductField(selectedProduct, "input model: ", Product::getModel, Product::setModel);
-        utils.updateProductField(selectedProduct, "input type: ", Product::getType, Product::setType);
+        utils.updateProductField(selectedProduct, " input brand: ", Product::getBrand, Product::setBrand);
+        utils.updateProductField(selectedProduct, " input model: ", Product::getModel, Product::setModel);
+        utils.updateProductField(selectedProduct, " input type: ", Product::getType, Product::setType);
         
-        System.out.print("input amount quantity for add: ");
+        System.out.print("Input amount quantity for add: ");
         int quantityToAdd = (KeyboardInput.inputNumber(1, 5000));
         utils.addQuantity(selectedProduct, quantityToAdd);
         
-        System.out.print("input new price: ");
+        System.out.print("Input new price: ");
         int newPrice = (KeyboardInput.inputNumber(1, 5000));
         selectedProduct.setPrice(newPrice);
         

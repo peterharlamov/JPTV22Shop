@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author nikit
+ * @author pupil
  */
 public class KeyboardInput {
      public static int inputNumberFromRange(Integer min, Integer max) {
@@ -32,7 +32,7 @@ public class KeyboardInput {
                if((number >= min) && isNumber){
                 repeat = false; 
                }else{
-                    System.out.printf("Enter number from next range: %d .. %d: ",min,max);
+                    System.out.printf("Enter number from next range %d .. %d: ", min, max);
                     isNumber = true;
                     repeat = true;
                 }
@@ -40,7 +40,7 @@ public class KeyboardInput {
                 if((number >= min && number <= max) && isNumber){
                     repeat = false;
                 }else{
-                    System.out.printf("Enter number from next range: %d .. %d: ",min,max);
+                    System.out.printf("Enter number from next range %d .. %d: ", min, max);
                     isNumber = true;
                     repeat = true;
                 }
@@ -81,7 +81,7 @@ public class KeyboardInput {
         Scanner scanner = new Scanner(System.in);
         int answer = 0;
         while(true){
-            System.out.print("input number from next range" +min + "..." + max + ": ");
+            System.out.print("input number from next range " + min + "..." + max + ": ");
             try {
                 answer = scanner.nextInt();
                 if (answer >= min && answer <= max) {
